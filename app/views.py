@@ -18,7 +18,7 @@ class MediaListView(ListView):
                 Q(name__icontains=query)
                 | Q(meta_fields__name__icontains=query)
                 | Q(meta_fields__value__icontains=query)
-            )
+            ).distinct()
         else:
             return Media.objects.all()
 
