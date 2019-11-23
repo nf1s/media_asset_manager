@@ -1,0 +1,50 @@
+
+jobs:
+  build:
+    working_directory: ~/media_asset_manager
+    docker:
+      - image: circleci/python:3.7.3
+      - image: circleci/postgres:11.0-alpine
+        environment:
+          POSTGRES_USER: circleci
+          POSTGRES_DB: circleci_test
+
+    steps:
+      - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - run:
+          command: |
+            sudo pip install pipenv
+
+            pipenv install --dev
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.7/site-packages"
+      - run:
+          command: |
+            pipenv run python manage.py migrate
+      - run:
+          command: |
+            pipenv run python manage.py test
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: tr1
+
+orbs:
+  jira: circleci/jira@1.0.5
+
+version: 2.1 # use CircleCI 2.1
+workflows:
+  build:
+    jobs:
+      - build:
+          post-steps:
+            - jira/notify
