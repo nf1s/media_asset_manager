@@ -30,14 +30,16 @@ class AddMetaFields(APIView):
             status.HTTP_200_OK: serializers.AddMultipleMetaFieldsSerializer
         },
     )
-    def put(self, request: Request, **kwargs):
+    def post(self, request: Request, **kwargs):
         serializer = serializers.AddMultipleMetaFieldsSerializer(
             data=request.data
         )
         if not serializer.is_valid():
             pass
 
-        serializer.add_multiple(kwargs["uuid"], request.data["meta_fields"])
+        serializer.add_update_multiple(
+            kwargs["uuid"], request.data["meta_fields"]
+        )
         return Response(data=serializer.data)
 
 

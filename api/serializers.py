@@ -24,7 +24,7 @@ class MediaModelSerializer(serializers.ModelSerializer):
 class AddMultipleMetaFieldsSerializer(serializers.Serializer):
     meta_fields = MetaFieldModelSerializer(many=True)
 
-    def add_multiple(self, uuid, fields):
+    def add_update_multiple(self, uuid, fields):
         media = Media.objects.get(uuid=uuid)
         for field in fields:
             meta_field, _ = media.meta_fields.get_or_create(name=field["name"])
