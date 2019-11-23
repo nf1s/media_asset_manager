@@ -21,6 +21,7 @@ urlpatterns = [
     # Url structure is based on Ahmed's order cancellation ms
     path("admin/", admin.site.urls),
     path("media/", include("app.urls")),
+    path("api/", include("api.urls")),
     path("", IndexView.as_view(), name="index"),
 ]
 name = "media asset manager".title()
