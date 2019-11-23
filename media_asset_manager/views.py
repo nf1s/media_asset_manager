@@ -7,7 +7,7 @@ from markdown import markdown
 
 
 class IndexView(TemplateView):
-    template_name = "main_view/index.html"
+    template_name = "home/index.html"
 
     def get_context_data(self, **kwargs):
 
