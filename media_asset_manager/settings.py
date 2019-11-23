@@ -13,14 +13,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 from .config import get_config
 
-# import sentry_sdk
-# from sentry_sdk.integrations.django import DjangoIntegration
 
 CONFIG = get_config()
 BASE_DIR = CONFIG.BASE_DIR
+WATCH_DIR = CONFIG.WATCH_DIR
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = CONFIG.SECRET_KEY
@@ -44,10 +41,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "rest_framework_jwt",
+    "django_elasticsearch_dsl",
     "corsheaders",
     "app.apps.AppConfig",
     "api.apps.ApiConfig",
-    "task_queue.apps.TaskQueueConfig",
+    "jobs.apps.JobsConfig",
 ]
 
 MIDDLEWARE = [
@@ -75,6 +73,9 @@ REST_FRAMEWORK = {
     ),
     "JSON_UNDERSCOREIZE": {"no_underscore_before_number": True},
 }
+
+ELASTICSEARCH_DSL = {"default": {"hosts": "localhost:9200"}}
+
 
 ROOT_URLCONF = "media_asset_manager.urls"
 
@@ -142,11 +143,6 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-# sentry_sdk.init(
-#     dsn=os.environ["SENTRY_DSN"], integrations=[DjangoIntegration()]
-# )
-
-# Celery application definition
 
 CELERY_BROKER_URL = CONFIG.MESSAGE_BROKER
 CELERY_RESULT_BACKEND = CONFIG.MESSAGE_BROKER
@@ -157,10 +153,6 @@ CELERY_TIMEZONE = "Europe/Stockholm"
 CELERY_DEFAULT_QUEUE = "media_asset_manager"
 CELERY_BEAT_SCHEDULE = {}
 DJANGO_CELERY_RESULTS_TASK_ID_MAX_LENGTH = 191
-
-# CORS_ORIGIN_ALLOW_ALL = CONFIG.CORS_ORIGIN_ALLOW_ALL
-# CORS_ORIGIN_WHITELIST = CONFIG.CORS_ORIGIN_WHITELIST
-# CORS_ALLOW_HEADERS = CONFIG.CORS_ALLOW_HEADERS
 
 
 if CONFIG.HEROKU:  # pragma: no cover

@@ -8,8 +8,6 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 
-# from corsheaders.defaults import default_headers
-
 
 class Base:
     DEBUG = True
@@ -23,33 +21,27 @@ class Base:
 
     ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".ngrok.io"]
 
-    MESSAGE_BROKER = os.environ["MESSAGE_BROKER"]
+    MESSAGE_BROKER = os.environ["REDIS_URL"]
 
     CORS_ORIGIN_ALLOW_ALL = False
     CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
+
+    WATCH_DIR = os.environ["WATCH_DIR"]
 
 
 class Dev(Base):
     CORS_ORIGIN_ALLOW_ALL = True
     CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
 
-    if Base.DOCKER:
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "NAME": "postgres",
-                "USER": "postgres",
-                "HOST": "db",
-                "PORT": 5432,  # default postgres port
-            }
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "HOST": "localhost",
+            "PORT": 5432,  # default postgres port
         }
-    else:
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.sqlite3",
-                "NAME": os.path.join(Base.BASE_DIR, "db.sqlite3"),
-            }
-        }
+    }
 
 
 class Test(Base):
