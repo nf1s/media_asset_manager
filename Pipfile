@@ -41,6 +41,8 @@ django-celery-beat = ">=1.*"
 django-celery-results = ">=1.1.*"
 drf-yasg = "*"
 flower = ">=0.9.*"
+elastic-apm = "*"
+watchdog = "*"
 
 [requires]
 python_version = "3.7"
