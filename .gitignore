@@ -45,3 +45,4 @@ __Pycache__
 celerybeat-schedule
 celerybeat.pid
 .coverage
+.env
