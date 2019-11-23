@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mt-5 mb-5 pt-5 pb-5">
+    <div class="row col-sm-12">
+        <table id="example" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Field</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for field in object_list %}
+                <tr>
+                    <th scope="row main-font">{{ field.name }}</th>
+                    <td class="main-font">{{ field.value }}</td>
+                    <td class="main-font">
+                        <a href="#" class="btn btn-outline-primary main-font"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'app:meta-field-delete' media_uuid field.pk %}"
+                            class="btn btn-outline-danger main-font"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+{% endblock content %}
