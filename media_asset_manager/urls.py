@@ -14,19 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-# from api import urls
-from .views import IndexView
+from django.urls import path, include
 
 urlpatterns = [
     # Url structure is based on Ahmed's order cancellation ms
     path("admin/", admin.site.urls),
-    path("", IndexView.as_view(), name="index"),
-    # path("api/", include(urls), name="api"),
+    path("media/", include("app.urls")),
 ]
-name = "media_asset_manager".title()
+name = "media asset manager".title()
 
-admin.site.site_header = f"{name} Microservice Admin"
-admin.site.site_title = f"{name} Microservice Admin"
-admin.site.index_title = f"Welcome to the {name} Microservice"
+admin.site.site_header = f"{name} Admin"
+admin.site.site_title = f"{name} Admin"
+admin.site.index_title = f"Welcome to {name}"
