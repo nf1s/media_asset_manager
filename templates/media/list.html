@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5 mb-5 pt-5 pb-5">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-8 ">
+        <form action="{% url 'app:media-list' %}" method="get">
+          <div class="input-group input-group-lg">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="q"
+              placeholder="Search...">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {% for media in object_list %}
+
+    {% if forloop.first or forloop.counter0 == 3 %}
+    <div class="container">
+      <div class="row justify-content-md-center mt-5 mb-5">
+        {% endif %}
+        <div class="col-sm">
+          <div class="card" style="width: 18rem;">
+            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+            <div class="card-body">
+              <div class="text-center">
+              </div>
+              <ul class="list-group list-group-flush w-100 align-items-stretch">
+                <h5 class="card-title main-font">{{ media.name }}</h5>
+                <p class="card-text main-font">media info</p>
+                <a href="{% url 'app:media-detail' media.uuid %}" class="btn btn-outline-primary main-font">view
+                  media</a>
+            </div>
+          </div>
+        </div>
+
+        {% if forloop.last or forloop.counter == 3 %}
+      </div>
+    </div>
+    {% endif %}
+
+
+    {% empty %}
+    <div class="justify-content-md-center row mt-5 mb-5">
+      <h3>No media files yet.</h3>
+    </div>
+  </div>
+
+  {% endfor %}
+
+  {% if is_paginated %}
+  <nav aria-label="Page navigation container">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <button onclick="goToPage('{{ page_obj.previous_page_number }}')" class="btn btn-outline-primary">&laquo;
+        prev </button>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <button onclick="goToPage('{{ page_obj.next_page_number }}')" class="btn btn-outline-success">
+        next &raquo;</button>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+  <script>
+    var goToPage = function (page) {
+      document.location.href = "?page=" + page;
+    }
+  </script>
+
+</div>
+{% endblock content %}
