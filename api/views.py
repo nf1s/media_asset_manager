@@ -6,6 +6,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from drf_yasg.utils import swagger_auto_schema
+from django.db.models import Q
 
 
 class GetMediaByUUID(generics.RetrieveAPIView):
@@ -19,7 +20,16 @@ class GetMediaByUUID(generics.RetrieveAPIView):
 class ListMedia(generics.ListAPIView):
 
     serializer_class = serializers.MediaModelSerializer
-    queryset = Media.objects.all()
+
+    def get_queryset(self):
+        query = self.kwargs.get("search", None)
+        if query:
+            return Media.objects.filter(
+                Q(name__icontains=query)
+                | Q(meta_fields__name__icontains=query)
+                | Q(meta_fields__value__icontains=query)
+            ).distinct()
+        return Media.objects.all()
 
 
 class AddUpdateMetaFields(APIView):

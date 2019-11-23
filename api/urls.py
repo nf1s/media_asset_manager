@@ -37,6 +37,7 @@ urlpatterns = [
         name="schema-redoc",
     ),
     path("media/", ListMedia.as_view(), name="media-list"),
+    path("media/<str:search>", ListMedia.as_view(), name="media-list-search"),
     path("media/<str:uuid>", GetMediaByUUID.as_view(), name="media-detail"),
     path(
         "media/<str:uuid>/meta-fields/create-multiple",
