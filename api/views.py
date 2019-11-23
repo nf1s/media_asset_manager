@@ -22,10 +22,10 @@ class ListMedia(generics.ListAPIView):
     queryset = Media.objects.all()
 
 
-class AddMetaFields(APIView):
+class AddUpdateMetaFields(APIView):
     @swagger_auto_schema(
         request_body=serializers.AddMultipleMetaFieldsSerializer(),
-        operation_id="meta_fields_update",
+        operation_id="meta_fields_create_update",
         responses={
             status.HTTP_200_OK: serializers.AddMultipleMetaFieldsSerializer
         },
