@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect
 
 
-class IndexView(ListView):
+class MediaListView(ListView):
     template_name = "media/list.html"
     paginate_by = 6
 

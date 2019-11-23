@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import IndexView
 
 urlpatterns = [
     # Url structure is based on Ahmed's order cancellation ms
     path("admin/", admin.site.urls),
     path("media/", include("app.urls")),
+    path("", IndexView.as_view(), name="index"),
 ]
 name = "media asset manager".title()
 

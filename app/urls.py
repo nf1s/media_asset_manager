@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import IndexView, MediaDetailView, MetaFieldDeleteView
+from .views import MediaListView, MediaDetailView, MetaFieldDeleteView
 
 app_name = "app"
 
 urlpatterns = [
-    path("", IndexView.as_view(), name="home"),
+    path("", MediaListView.as_view(), name="media-list"),
     path("<str:uuid>", MediaDetailView.as_view(), name="media-detail"),
     path(
         "<str:uuid>/meta-field/<int:pk>",
