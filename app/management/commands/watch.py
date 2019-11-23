@@ -56,7 +56,7 @@ class WatchDogHandler(PatternMatchingEventHandler):
 
     def on_deleted(self, event):
         name = self._get_name_from_path(event.src_path)
-        Media.objects.delete(name=name)
+        Media.objects.get(name=name).delete()
         print(f"{event.src_path} is {event.event_type}")
 
     def on_moved(self, event):
