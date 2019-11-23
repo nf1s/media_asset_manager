@@ -2,13 +2,15 @@ from django.urls import path
 from api.views import (
     GetMediaByUUID,
     ListMedia,
-    AddMetaFields,
+    AddUpdateMetaFields,
     DeleteMetaFields,
 )
 from rest_framework import permissions
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+
+app_name = "api"
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -38,8 +40,8 @@ urlpatterns = [
     path("media/<str:uuid>", GetMediaByUUID.as_view(), name="media-detail"),
     path(
         "media/<str:uuid>/meta-fields/create-multiple",
-        AddMetaFields.as_view(),
-        name="meta-fields-create-multiple",
+        AddUpdateMetaFields.as_view(),
+        name="meta-fields-create-update-multiple",
     ),
     path(
         "media/<str:uuid>/meta-fields/delete-multiple",
