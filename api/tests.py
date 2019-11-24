@@ -22,6 +22,15 @@ class MediaAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(self.media.name, response.data["name"])
 
+    def test_search_media(self):
+        self.url = reverse(
+            "api:media-list-search", kwargs={"search": self.media.name}
+        )
+
+        response = self.client.get(self.url, content_type="application/json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(self.media.name, response.data[0]["name"])
+
 
 class MetaFieldsAPITestCase(APITestCase):
     def test_add_meta_fields(self):
