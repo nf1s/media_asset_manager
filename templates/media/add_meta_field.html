@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5 mb-5 pt-5 pb-5">
+    <div class="row col-sm-5">
+        <form method="post">{% csrf_token %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <h2>Add meta fields</h2>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row main-font">Name</th>
+                        <td class="main-font">{{ form.name | as_crispy_field }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row main-font">Value</th>
+                        <td class="main-font">{{ form.value | as_crispy_field }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" value="Submit" class="btn btn-success">
+    </div>
+</div>
+{% endblock content %}
