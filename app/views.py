@@ -8,7 +8,6 @@ from django.views.generic import View
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from app.models import Media, MetaFields
-from django.db.models import Q
 from django.http import HttpResponseRedirect
 from app.forms import AddMetaFieldForm, EditMetaFieldForm
 
@@ -18,15 +17,11 @@ class MediaListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        """Method handels search and filtering of media and meta fields"""
+        """Method handels search and filtering of media file names"""
 
         query = self.request.GET.get("q")
         if query:
-            return Media.objects.filter(
-                Q(name__icontains=query)
-                | Q(meta_fields__name__icontains=query)
-                | Q(meta_fields__value__icontains=query)
-            ).distinct()
+            return Media.objects.filter(name__icontains=query).distinct()
         else:
             return Media.objects.all()
 
