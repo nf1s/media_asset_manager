@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "rest_framework_jwt",
     "django_elasticsearch_dsl",
+    "crispy_forms",
     "corsheaders",
     "app.apps.AppConfig",
     "api.apps.ApiConfig",
