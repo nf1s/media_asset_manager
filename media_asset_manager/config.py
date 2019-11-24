@@ -21,8 +21,6 @@ class Base:
 
     ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".ngrok.io"]
 
-    MESSAGE_BROKER = os.environ["REDIS_URL"]
-
     CORS_ORIGIN_ALLOW_ALL = False
     CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
 
