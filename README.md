@@ -72,6 +72,7 @@ chmod +x test.sh
 * Image fields can be added as meta fields and linked to an external CDN for storage and retrieval e.g Cloudinary.
 * Find a way for docker to watch directories of Host machine and get correct events.
 * Use ELK and APM for application monitoring.
+* API versioning is probably good to implement right away.
 
 ### Other Info
 
