@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""Main views module
+
+Renders home page from README.md
+"""
 import os
 
 from django.conf import settings

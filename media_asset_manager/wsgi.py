@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 WSGI config for media_asset_manager project.
 
