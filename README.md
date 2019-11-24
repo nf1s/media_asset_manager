@@ -21,7 +21,6 @@ Unfortunately, the whole solution could not be dockerized,
 problem was the shared directory between docker cluster and the host fires different events than
 the host machine
 e.g
-I was running to watcher
 * watcher running on host machine watch the shared directory on the host site
 * watcher running in docker container watch the shared directory in the docker cluster
 
