@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+"""App urls Module
+"""
 from django.urls import path
 from .views import (
     MediaListView,

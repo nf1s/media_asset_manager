@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+"""App Models Module
+"""
 from django.db import models
 from uuid import uuid4
 

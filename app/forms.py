@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+"""App Forms Module
+"""
 from django.forms import ModelForm
 from app.models import MetaFields
 
