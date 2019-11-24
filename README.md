@@ -7,8 +7,8 @@
 * all application specific dependencies are specified in `Pipfile`
 
 ### Configuration
-follow the structure of .env.example and add your own environment variables
-
+follow the structure of `.env.example` and add your own environment variables.
+by default the app will Read environment variables from `.env`
 ```
 ENV="DEV" # if you are running it locally choose "DEV", if not check `config.py` for env specific config
 SECRET_KEY="your-super-secret-key" # add your secret key here
