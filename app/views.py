@@ -1,10 +1,11 @@
 from django.views.generic import ListView
 from django.views.generic import View
-
+from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from app.models import Media, MetaFields
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from app.forms import AddMetaFieldForm, EditMetaFieldForm
 
 
 class MediaListView(ListView):
@@ -43,4 +44,41 @@ class MetaFieldDeleteView(View):
             reverse_lazy(
                 "app:media-detail", kwargs={"uuid": self.kwargs["uuid"]}
             )
+        )
+
+
+class MetaFieldEditView(FormView):
+    template_name = "media/edit_meta_field.html"
+    form_class = EditMetaFieldForm
+
+    def form_valid(self, form):
+        meta_field = MetaFields.objects.get(pk=self.kwargs["pk"])
+
+        value = form.cleaned_data.get("value")
+        meta_field.value = value
+        meta_field.save()
+
+        return super().form_valid(form)
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy(
+            "app:media-detail", kwargs={"uuid": self.kwargs["uuid"]}
+        )
+
+
+class MetaFieldAddView(FormView):
+    template_name = "media/add_meta_field.html"
+    form_class = AddMetaFieldForm
+
+    def form_valid(self, form):
+
+        name = form.cleaned_data.get("name")
+        value = form.cleaned_data.get("value")
+        media = Media.objects.get(uuid=self.kwargs["uuid"])
+        MetaFields.objects.create(media=media, name=name, value=value)
+        return super().form_valid(form)
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy(
+            "app:media-detail", kwargs={"uuid": self.kwargs["uuid"]}
         )
