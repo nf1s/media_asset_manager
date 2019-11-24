@@ -30,6 +30,11 @@ this is why I created the run script (never needed that with docker-compose)
 
 However, postgres is dockerized
 
+### Install dependencies
+```
+pipenv install
+```
+
 ### How to run
 ```
 chmod +x run.sh
