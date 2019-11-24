@@ -28,6 +28,8 @@ if file is moved/renamed on Host, it fires on_delete and then on_create on docke
 
 this is why I created the run script (never needed that with docker-compose)
 
+However, postgres is dockerized
+
 ### How to run
 ```
 chmod +x run.sh
@@ -62,7 +64,8 @@ chmod +x test.sh
 * Implementing caching using Redis
 * Adding tests, atm there are some tests written for API endpoints but the coverage is quite low.(just lack of time)
 * Image fields can be added as meta fields and linked to an external CDN for storage and retrieval e.g Cloudinary.
-
+* Find a way for docker to watch directories of Host machine and get correct events.
+* Use ELK and APM for application monitoring.
 
 ### Other Info
 
