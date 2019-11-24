@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+"""Django app Watch command
+"""
 import time
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -29,19 +32,6 @@ class Command(BaseCommand):
 
 class WatchDogHandler(PatternMatchingEventHandler):
     patterns = ["*.txt"]
-
-    def process(self, event):
-        """
-        event.event_type
-            'modified' | 'created' | 'moved' | 'deleted'
-        event.is_directory
-            True | False
-        event.src_path
-            path/to/observed/file
-        """
-
-        with open(event.src_path, "r"):
-            pass
 
     def _get_name_from_path(self, path):
         return path.split("/")[-1]
