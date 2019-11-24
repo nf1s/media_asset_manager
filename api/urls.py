@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+"""API Urls Module
+Module contains routes for all REST endpoints
+"""
 from django.urls import path
 from api.views import (
     GetMediaByUUID,
