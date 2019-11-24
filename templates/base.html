@@ -28,10 +28,13 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="">API Documentation</a>
+              <a class="nav-link" href="{% url 'app:media-list' %}">Media</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'app:media-list' %}">Media</a>
+              <a class="nav-link" href="{% url 'api:schema-swagger-ui' %}">Open API</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'api:schema-redoc' %}">Redoc</a>
             </li>
           </ul>
           <ul class="navbar-nav">
