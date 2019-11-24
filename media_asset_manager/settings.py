@@ -39,11 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_celery_beat",
     "rest_framework",
     "drf_yasg",
-    "rest_framework_jwt",
-    "django_elasticsearch_dsl",
     "crispy_forms",
     "corsheaders",
     "app.apps.AppConfig",
@@ -132,20 +129,3 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-
-CELERY_BROKER_URL = CONFIG.MESSAGE_BROKER
-CELERY_RESULT_BACKEND = CONFIG.MESSAGE_BROKER
-CELERY_ACCEPT_CONTENT = ["application/json"]
-CELERY_RESULT_SERIALIZER = "json"
-CELERY_TASK_SERIALIZER = "json"
-CELERY_TIMEZONE = "Europe/Stockholm"
-CELERY_DEFAULT_QUEUE = "media_asset_manager"
-CELERY_BEAT_SCHEDULE = {}
-DJANGO_CELERY_RESULTS_TASK_ID_MAX_LENGTH = 191
-
-
-if CONFIG.HEROKU:  # pragma: no cover
-    import django_heroku
-
-    django_heroku.settings(locals())
