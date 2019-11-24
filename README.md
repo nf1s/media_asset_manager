@@ -21,8 +21,8 @@ Unfortunately, the whole solution could not be dockerized,
 problem was the shared directory between docker cluster and the host fires different events than
 the host machine
 e.g
-* watcher running on host machine watch the shared directory on the host site
-* watcher running in docker container watch the shared directory in the docker cluster
+* watcher running on host machine watch the shared directory on the host site.
+* watcher running in docker container watch the shared directory in the docker cluster.
 
 if file is moved/renamed on Host, it fires on_delete and then on_create on docker cluster
 
