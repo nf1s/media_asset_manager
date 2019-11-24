@@ -6,7 +6,7 @@
 * make sure that `pipenv` and `docker` are installed on your machine
 * all application specific dependencies are specified in `Pipfile`
 
-### configuration
+### Configuration
 follow the structure of .env.example and add your own environment variables
 
 ```
