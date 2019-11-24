@@ -59,5 +59,12 @@ chmod +x test.sh
 * Using media files and converting to a web displayable format, probably it is better use celery for this.
 * Using Elastic search for search functionality instead of the ugly ORM filter.
 * Using React/MaterialUI instead of the ugly bootstrap django template (becoming fully restful).
-* Implementing cashing using Redis
-* Adding tests, atm there are some tests written for API endpoints but the coverage is quite low. 
+* Implementing caching using Redis
+* Adding tests, atm there are some tests written for API endpoints but the coverage is quite low.(just lack of time)
+* Image fields can be added as meta fields and linked to an external CDN for storage and retrieval e.g Cloudinary.
+
+
+### Other Info
+
+Total development time = 6 hrs
+cleaning and documenting = 2 hrs
