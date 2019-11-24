@@ -30,9 +30,10 @@ this is why I created the run script (never needed that with docker-compose)
 
 However, postgres is dockerized
 
-### Install dependencies
+### Install dependencies (locally)
+
 ```
-pipenv install
+pipenv install --dev
 ```
 
 ### How to run
