@@ -15,21 +15,6 @@ SECRET_KEY="your-super-secret-key" # add your secret key here
 WATCH_DIR="/path/to/dir" # add path to the directory you need to watch (make sure that the app has access to that dir)
 ```
 
-### How does it work?
-
-Unfortunately, the whole solution could not be dockerized,
-problem was the shared directory between docker cluster and the host fires different events than
-the host machine
-e.g
-* watcher running on host machine watch the shared directory on the host site.
-* watcher running in docker container watch the shared directory in the docker cluster.
-
-if file is moved/renamed on Host, it fires on_delete and then on_create on docker cluster
-
-this is why I created the run script (never needed that with docker-compose)
-
-However, postgres is dockerized
-
 ### Install dependencies (locally)
 
 ```
@@ -73,8 +58,3 @@ chmod +x test.sh
 * Find a way for docker to watch directories of Host machine and get correct events.
 * Use ELK and APM for application monitoring.
 * API versioning is probably good to implement right away.
-
-### Other Info
-
-Total development time = 6 hrs
-cleaning and documenting = 2 hrs
